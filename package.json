@@ -1,18 +1,21 @@
 {
   "name": "pexels-api-wrapper",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "A simple promise wrapper for the Pexels API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/jest index.test.js"
   },
-  "author": "Chirag Ravindra",
+  "author": "Alexander Claes",
   "license": "ISC",
   "dependencies": {
     "node-fetch": "^1.7.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cravindra/pexels-api-wrapper.git"
+    "url": "https://github.com/aclaes/pexels-api-wrapper.git"
+  },
+  "devDependencies": {
+    "jest": "^22.4.2"
   }
 }
