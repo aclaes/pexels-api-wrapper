@@ -2,7 +2,8 @@ var fetch = require('node-fetch');
 var BASE_URL = "http://api.pexels.com/v1/";
 var DIRECTORY = {
     SEARCH_URL: BASE_URL + "search",
-    POPULAR_URL: BASE_URL + "popular"
+    POPULAR_URL: BASE_URL + "popular",
+    CURATED_URL: BASE_URL + "curated"
 };
 
 /**
@@ -51,6 +52,26 @@ PexelsApi.prototype.search = function (query, perPage, page) {
 PexelsApi.prototype.getPopularPhotos = function (perPage, page) {
     var self = this;
     var url = DIRECTORY.POPULAR_URL +
+        "?per_page=" + (perPage && !isNaN(perPage) ? +perPage : 10) +
+        "&page=" + (page && !isNaN(page) ? +page : 1);
+    return fetch(url, {
+            headers: self.headers
+        })
+        .then(function (res) {
+            return res.json();
+        }).catch(function (err) {
+            return Promise.reject(err);
+        });
+};
+
+/**
+ * Promise factory to interact with Pexels Curated Photos API
+ * @param {number} perPage Specifies the number of items per page (Defaults to 10)
+ * @param {page} page Specifies the page being requested (Defaults to 1)
+ */
+PexelsApi.prototype.getCuratedPhotos = function (perPage, page) {
+    var self = this;
+    var url = DIRECTORY.CURATED_URL +
         "?per_page=" + (perPage && !isNaN(perPage) ? +perPage : 10) +
         "&page=" + (page && !isNaN(page) ? +page : 1);
     return fetch(url, {
