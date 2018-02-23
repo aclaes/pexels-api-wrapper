@@ -38,6 +38,15 @@ pexelsClient.getPopularPhotos(10, 1)
     catch(function(e){
         console.err(e);
     });
+
+//Get Curated Photos (undocumented Endpoint)
+pexelsClient.getCuratedPhotos(10, 1)
+    .then(function(result){
+        console.log(result);
+    }).
+    catch(function(e){
+        console.err(e);
+    });
 ```
 
 
@@ -66,6 +75,32 @@ Promise factory to interact with Pexels Popular Photos API
 
 ```js
 PexelsAPI.getPopularPhotos(per_page, page);
+```
+
+#### Curated
+Promise factory to interact with Pexels Curated Photos API
+
+| Param | Type | Description |
+| ----- | ---- | ----------- |
+| **per_page** | *number* | The number of results to return per page (Defaults to 10)
+| **page** | *number* | The page number to return (Defaults to 1)
+
+```js
+PexelsAPI.getCuratedPhotos(per_page, page);
+```
+
+### Test
+
+Before Testing against the Pexels API please place your personal API key in the ``ìndex.test.js```file.
+
+```js
+const API_KEY = 'YOUR_API_KEY_HERE'
+```
+
+Then run the test scripts:
+
+```
+npm test
 ```
 
 
